@@ -25,9 +25,9 @@ sh_v1 = shapley_value(entities, funct)
 ```python
 from cooperativegames import banzhaf_index
 
-distrib_repr = np.array([4, 3, 2, 1])
+distrib_repr = np.array([3, 2, 1, 1])
 win_thr = 0.5
-bzf_ind = banzhaf_index(distrib_repr, win_thr)
+sh_sh_ind = shapley_index(distrib_repr, win_thr)
 
 ```
 
@@ -35,18 +35,25 @@ bzf_ind = banzhaf_index(distrib_repr, win_thr)
 ```python
 from cooperativegames import banzhaf_index
 
-distrib_repr = np.array([3, 2, 1, 1])
+distrib_repr = np.array([4, 3, 2, 1])
 win_thr = 0.5
-sh_sh_ind = banzhaf_index(distrib_repr, win_thr)
+bzf_ind = banzhaf_index(distrib_repr, win_thr)
 
 ```
+
 
 # Testing the module
 It is provide a testing module called test.py. It runs only with the importation.
 
 ```python
 
-import test
+from test import test_CooperativeGames
+test_CooperativeGames()
+```
+or it could be done also with nosetests of [nose](http://nose.readthedocs.org/en/latest/index.html),
+```bash
+
+nosetests
 ```
 
 # TODO
