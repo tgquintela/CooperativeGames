@@ -50,7 +50,7 @@ It is provide a testing module called test.py. It runs only with the importation
 from test import test_CooperativeGames
 test_CooperativeGames()
 ```
-or it could be done also with nosetests of nose,
+or it could be done also with nosetests of [nose](http://nose.readthedocs.org/en/latest/index.html),
 ```bash
 
 nosetests
