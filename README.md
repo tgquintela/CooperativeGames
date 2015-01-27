@@ -47,7 +47,13 @@ It is provide a testing module called test.py. It runs only with the importation
 
 ```python
 
-import test
+from test import test_CooperativeGames
+test_CooperativeGames()
+```
+or it could be done also with nosetests of nose,
+```bash
+
+nosetests
 ```
 
 # TODO
