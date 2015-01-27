@@ -1,4 +1,7 @@
 
+version = '0.0.1'
+__author__ = 'T. G. Quintela (tgq.spm@gmail.com)'
+
 """Module of testing the functions programed in the module cooperativegames.
 """
 

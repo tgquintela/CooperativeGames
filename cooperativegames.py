@@ -1,4 +1,6 @@
 
+__author__ = 'T. G. Quintela (tgq.spm@gmail.com)'
+
 """ Module which groups functions useful for the study of cooperative games.
 
 TODO:
