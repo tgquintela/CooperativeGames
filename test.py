@@ -1,5 +1,5 @@
 
-__author__ = 'T. G. Quintela (tgq.spm@gmail.com)'
+__author__ = 'To\xc3\xb1o G. Quintela (tgq.spm@gmail.com)'
 
 """Module of testing the functions programed in the module cooperativegames.
 """
