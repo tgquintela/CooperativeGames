@@ -23,7 +23,7 @@ sh_v1 = shapley_value(entities, funct)
 
 * Shapley-Shubik power index
 ```python
-from cooperativegames import banzhaf_index
+from cooperativegames import shapley_index
 
 distrib_repr = np.array([3, 2, 1, 1])
 win_thr = 0.5
