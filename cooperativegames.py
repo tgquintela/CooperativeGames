@@ -5,6 +5,8 @@ __author__ = 'To\xc3\xb1o G. Quintela (tgq.spm@gmail.com)'
 
 TODO:
 ----
+shapley index, too much time.
+
 shapley_value
 assimetric shapley Index
 """
@@ -36,12 +38,15 @@ def shapley_index(distrib_repr, win_thr=0.5):
     p = math.factorial(n)
 
     cum = []
-    perm = permutations(range(n), n)
+    perm = permutations(np.arange(n)[distrib_repr>0], (distrib_repr>0).sum())
     for per in perm:
         idx = np.where(np.cumsum(distrib_repr[list(per)]) >= win_v)[0][0]
         cum.append(per[idx])
     c = Counter(cum)
-    shapley_ind = np.array(c.values())/float(p)
+    # Formatting output
+    shapley_ind = np.zeros(n)
+    n_out = len(c.values())
+    shapley_ind[:n_out] = np.array(c.values())/float(p)
 
     return shapley_ind
 
@@ -62,7 +67,7 @@ def banzhaf_index(distrib_repr, win_thr=0.5):
     win_v = n_v*win_thr
 
     # Compute subsets and wining subsets
-    subsets = all_subsets(range(n))
+    subsets = all_subsets(list(np.arange(n)[distrib_repr>0]))
     win_subsets = [subsets[i] for i in range(len(subsets))
                    if np.sum(distrib_repr[subsets[i]]) > win_v]
 
