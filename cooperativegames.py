@@ -9,12 +9,81 @@ shapley index, too much time.
 
 shapley_value
 assimetric shapley Index
+
+
 """
 
 import numpy as np
 from itertools import permutations, combinations
 from collections import Counter
 import math
+from cooperativegames_tools import all_subsets_it, winning_coalitions_it,\
+    get_critical_players, weight_coalition, all_subsets
+
+
+def weighted_winning_coalitions(distrib_repr, weights, win_thr=0.5):
+    """Weight measure of the possible coalitions regarding how natural are the
+    possible winning coalitions.
+    """
+    ## 0. Initalization of variables
+    n = distrib_repr.shape[0]
+    n_v = np.sum(distrib_repr)
+    win_v = n_v*win_thr
+    power = np.zeros(n)
+
+    ## Compute all the winning coalitions
+    coalitions = all_subsets_it(range(n))
+    for coalition in coalitions:
+        if np.sum(distrib_repr[coalition]) > win_v:
+            # Compute weights of the coalition
+            w_c = weight_coalition(coalition, weights)
+            power[coalition] += w_c
+
+    ## Normalize measure
+    if power.sum():
+        power = power/power.sum()
+
+    return power
+
+
+def weighted_worsable_coalitions(distrib_repr, weights, win_thr=0.5):
+    """Weight measure of the power to break the winning coalitions regarding
+    how probable the coalition is.
+    """
+    ## 0. Initalization of variables
+    n = distrib_repr.shape[0]
+    n_v = np.sum(distrib_repr)
+    win_v = n_v*win_thr
+    power = np.zeros(n)
+    # temp
+    powers_coal = []
+
+    ## Compute all the winning coalitions
+    w_coalitions = winning_coalitions_it(range(n), distrib_repr, win_v)
+    for w_coalition in w_coalitions:
+        cri = get_critical_players(w_coalition, distrib_repr, win_v)
+        cri = [w_coalition[i] for i in cri]
+        if cri:
+            # Evaluate winning coalition weight
+            w_wc = weight_coalition(w_coalition, weights)
+            if w_wc == 0:
+                continue
+            powers_coal.append((w_coalition, w_wc))
+            # Evaluate consequent losing coalitions
+            coal_los = [[i for i in cri if i != e] for e in cri]
+            w_lc = [weight_coalition(l_coal, weights) for l_coal in coal_los]
+            # Normalize over critical parties
+            w_lc = [w_wc/w_lc[i] for i in range(len(cri))]
+            w_lc = np.array(w_lc) / np.array(w_lc).sum()
+            for i in range(len(cri)):
+                print cri, cri[i], w_lc[i]
+                power[cri[i]] += w_wc*w_lc[i]
+
+    ## Normalize measure over coalitions weights
+    if power.sum():
+        power = power/power.sum()
+
+    return power, powers_coal
 
 
 def shapley_index(distrib_repr, win_thr=0.5):
@@ -129,17 +198,3 @@ def shapley_value(set_, value_func=lambda x: 1):
     return shap_values
 
 
-###############################################################################
-############################ AUXILIARY FUNCTIONS ##############################
-###############################################################################
-def all_subsets(set_):
-    set_ = np.array(set_)
-    n = set_.shape[0]
-    subsets = []
-    for i in range(n+1):
-        subsets += [list(comb) for comb in combinations(set_, i)]
-    return subsets
-
-
-def _in_set(set_a, set_b):
-    return np.all([e in set_b for e in set_a])
