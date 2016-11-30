@@ -1,6 +1,6 @@
 
-[![Coverage Status](https://coveralls.io/repos/github/tgquintela/CooperativeGames/badge.svg?branch=master)](https://coveralls.io/github/tgquintela/CooperativeGames?branch=master)
 [![Build Status](https://travis-ci.org/tgquintela/CooperativeGames.svg?branch=master)](https://travis-ci.org/tgquintela/CooperativeGames)
+[![Coverage Status](https://coveralls.io/repos/github/tgquintela/CooperativeGames/badge.svg?branch=master)](https://coveralls.io/github/tgquintela/CooperativeGames?branch=master)
 # CooperativeGames
 Some measure useful for cooperative games. 
 In this first version it contains:
@@ -16,7 +16,7 @@ The easy way to use this functions are:
 
 * Shapley value
 ```python
-from cooperativegames import shapley_value
+from Cooperativegames import shapley_value
 
 entities = np.array(range(3))
 funct = lambda x: 1 if list(x) in [[0, 2], [1, 2], [0, 1, 2]] else 0
@@ -26,7 +26,7 @@ sh_v1 = shapley_value(entities, funct)
 
 * Shapley-Shubik power index
 ```python
-from cooperativegames import shapley_index
+from Cooperativegames import shapley_index
 
 distrib_repr = np.array([3, 2, 1, 1])
 win_thr = 0.5
@@ -36,7 +36,7 @@ sh_sh_ind = shapley_index(distrib_repr, win_thr)
 
 * Banzhaf power index
 ```python
-from cooperativegames import banzhaf_index
+from Cooperativegames import banzhaf_index
 
 distrib_repr = np.array([4, 3, 2, 1])
 win_thr = 0.5
@@ -50,8 +50,9 @@ It is provide a testing module called test.py. It runs only with the importation
 
 ```python
 
-from test import test_CooperativeGames
-test_CooperativeGames()
+import CooperativeGames
+CooperativeGames.test()
+
 ```
 or it could be done also with nosetests of [nose](http://nose.readthedocs.org/en/latest/index.html),
 ```bash
