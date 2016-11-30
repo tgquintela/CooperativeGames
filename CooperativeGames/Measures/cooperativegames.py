@@ -1,7 +1,10 @@
 
 __author__ = 'To\xc3\xb1o G. Quintela (tgq.spm@gmail.com)'
 
-""" Module which groups functions useful for the study of cooperative games.
+"""
+Main cooperative games measures
+-------------------------------
+Module which groups functions useful for the study of cooperative games.
 
 TODO:
 ----
@@ -24,8 +27,24 @@ from cooperativegames_tools import all_subsets_it, winning_coalitions_it,\
 def weighted_winning_coalitions(distrib_repr, weights, win_thr=0.5):
     """Weight measure of the possible coalitions regarding how natural are the
     possible winning coalitions.
+
+    Parameters
+    ----------
+    distrib_repr: list or np.ndarray
+        the distribution representation.
+    weights: list or np.ndarray
+        the weight of each possible pair oc coalitions.
+    win_thr: float (default=0.5)
+        the winner threshold in proportion.
+
+    Returns
+    -------
+    power: float
+        the power index.
+
     """
     ## 0. Initalization of variables
+    distrib_repr = np.array(distrib_repr)
     n = distrib_repr.shape[0]
     n_v = np.sum(distrib_repr)
     win_v = n_v*win_thr
@@ -49,8 +68,24 @@ def weighted_winning_coalitions(distrib_repr, weights, win_thr=0.5):
 def weighted_worsable_coalitions(distrib_repr, weights, win_thr=0.5):
     """Weight measure of the power to break the winning coalitions regarding
     how probable the coalition is.
+
+    Parameters
+    ----------
+    distrib_repr: list or np.ndarray
+        the distribution representation.
+    weights: list or np.ndarray
+        the weight of each possible pair oc coalitions.
+    win_thr: float (default=0.5)
+        the winner threshold in proportion.
+
+    Returns
+    -------
+    power: float
+        the power index.
+
     """
     ## 0. Initalization of variables
+    distrib_repr = np.array(distrib_repr)
     n = distrib_repr.shape[0]
     n_v = np.sum(distrib_repr)
     win_v = n_v*win_thr
@@ -76,18 +111,30 @@ def weighted_worsable_coalitions(distrib_repr, weights, win_thr=0.5):
             w_lc = [w_wc/w_lc[i] for i in range(len(cri))]
             w_lc = np.array(w_lc) / np.array(w_lc).sum()
             for i in range(len(cri)):
-                print cri, cri[i], w_lc[i]
+#                print cri, cri[i], w_lc[i]
                 power[cri[i]] += w_wc*w_lc[i]
 
     ## Normalize measure over coalitions weights
     if power.sum():
         power = power/power.sum()
 
-    return power, powers_coal
+    return power
 
 
 def shapley_index(distrib_repr, win_thr=0.5):
-    """
+    """The Shapley index of power.
+
+    Parameters
+    ----------
+    distrib_repr: list or np.ndarray
+        the distribution representation.
+    win_thr: float (default=0.5)
+        the winner threshold in proportion.
+
+    Returns
+    -------
+    shapley_ind: float
+        the shapley power index.
 
     References
     ----------
@@ -101,13 +148,15 @@ def shapley_index(distrib_repr, win_thr=0.5):
     Journal of Game Theory 34 (2): 229-240. doi:10.1007/s00182-006-0011-z.
 
     """
+    distrib_repr = np.array(distrib_repr)
     n = distrib_repr.shape[0]
     n_v = np.sum(distrib_repr)
     win_v = n_v*win_thr
     p = math.factorial(n)
 
     cum = []
-    perm = permutations(np.arange(n)[distrib_repr>0], (distrib_repr>0).sum())
+    perm =\
+        permutations(np.arange(n)[distrib_repr > 0], (distrib_repr > 0).sum())
     for per in perm:
         idx = np.where(np.cumsum(distrib_repr[list(per)]) >= win_v)[0][0]
         cum.append(per[idx])
@@ -121,7 +170,19 @@ def shapley_index(distrib_repr, win_thr=0.5):
 
 
 def banzhaf_index(distrib_repr, win_thr=0.5):
-    """
+    """The Banzhaf power index.
+
+    Parameters
+    ----------
+    distrib_repr: list or np.ndarray
+        the distribution representation.
+    win_thr: float (default=0.5)
+        the winner threshold in proportion.
+
+    Returns
+    -------
+    banzhaf_ind: float
+        the Banzhaf power index.
 
     References
     ----------
@@ -131,12 +192,13 @@ def banzhaf_index(distrib_repr, win_thr=0.5):
     """
 
     # Initalization of variables
+    distrib_repr = np.array(distrib_repr)
     n = distrib_repr.shape[0]
     n_v = np.sum(distrib_repr)
     win_v = n_v*win_thr
 
     # Compute subsets and wining subsets
-    subsets = all_subsets(list(np.arange(n)[distrib_repr>0]))
+    subsets = all_subsets(list(np.arange(n)[distrib_repr > 0]))
     win_subsets = [subsets[i] for i in range(len(subsets))
                    if np.sum(distrib_repr[subsets[i]]) > win_v]
 
@@ -163,7 +225,19 @@ def banzhaf_index(distrib_repr, win_thr=0.5):
 
 
 def shapley_value(set_, value_func=lambda x: 1):
-    """
+    """The Shapley value.
+
+    Parameters
+    ----------
+    set_: list or np.ndarray
+        the list of players.
+    value_func: function
+        the value function of each subset.
+
+    Returns
+    -------
+    shap_values: np.ndarray
+        the computed shapley values.
 
     References
     ----------
@@ -171,6 +245,7 @@ def shapley_value(set_, value_func=lambda x: 1):
     the Theory of Games, volume II, by H.W. Kuhn and A.W. Tucker, editors.
     Annals of Mathematical Studies v. 28, pp. 307-317. Princeton University
     Press, 1953.
+
     """
 
     # Initialization
@@ -196,5 +271,3 @@ def shapley_value(set_, value_func=lambda x: 1):
 
     shap_values = np.array(phis)
     return shap_values
-
-

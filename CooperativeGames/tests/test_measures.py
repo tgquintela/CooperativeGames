@@ -5,13 +5,13 @@ __author__ = 'To\xc3\xb1o G. Quintela (tgq.spm@gmail.com)'
 """
 
 import numpy as np
-from cooperativegames import shapley_index, banzhaf_index, shapley_value
+from ..Measures.cooperativegames import shapley_index, banzhaf_index,\
+    shapley_value, weighted_winning_coalitions, weighted_worsable_coalitions
 
 
-def test_CooperativeGames():
+def test():
     """Main function for testing power indexs of the cooperative games package.
     """
-
     def test1_shapley_value(funct):
         """Glove game:
         Consider a simplified description of a business. An owner, o, provides
@@ -213,3 +213,15 @@ def test_CooperativeGames():
         distrib_repr = np.array([3, 2, 1, 1])
         win_thr = .5
         return [distrib_repr, win_thr]
+
+    ################### Personalized coded
+    #######################################
+    distrib_repr = np.random.randint(0, 20, 10)
+    weights = np.random.random((10, 10))
+
+    weighted_winning_coalitions(distrib_repr, weights, win_thr=0.5)
+    weighted_worsable_coalitions(distrib_repr, weights, win_thr=0.5)
+
+    weights[0, 3] = 0
+    weighted_winning_coalitions(distrib_repr, weights, win_thr=0.5)
+    weighted_worsable_coalitions(distrib_repr, weights, win_thr=0.5)
