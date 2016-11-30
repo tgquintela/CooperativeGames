@@ -160,7 +160,7 @@ def get_info(dynamic=True):
 
 
 ## Version information
-name = 'TimeSeriesTools'
+name = 'CooperativeGames'
 major = "0"
 minor = "0"
 micro = "0"
