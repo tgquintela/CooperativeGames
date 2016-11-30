@@ -11,5 +11,5 @@ set -e
 if [[ "$COVERAGE" == "true" ]]; then
     nosetests CooperativeGames/__init__.py --with-coverage --cover-package=CooperativeGames
 else
-    nosetests
+    nosetests CooperativeGames/__init__.py
 fi

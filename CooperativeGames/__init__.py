@@ -15,6 +15,10 @@ from tests import test_measures
 from tests import test_measurestools
 from tests import test_plotting
 
+## Information about package
+import version
+import release
+
 ## Not inform about warnings
 import warnings
 with warnings.catch_warnings():
