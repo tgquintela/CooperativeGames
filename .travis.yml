@@ -1,0 +1,27 @@
+
+language: python
+sudo: false
+virtualenv:
+  system_site_packages: true
+addons:
+   apt:
+      packages:
+      - gfortran
+      - nose
+      - libgfortran
+      - coverage
+
+matrix:
+  include:
+    # "Recommended" environments: More recent versions, for Py2 and Py3.
+    - python: "2.7"
+      env: DEPS="" DISTRIB="conda" COVERAGE="true"
+
+# installation
+install:
+  - source administrative_tools/continuous_integration/install.sh
+# command to run tests
+script:
+  - travis_wait 20 'bash administrative_tools/continuous_integration/test_script.sh'
+after_success:
+  - coveralls
