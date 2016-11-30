@@ -1,3 +1,6 @@
+
+[![Coverage Status](https://coveralls.io/repos/github/tgquintela/CooperativeGames/badge.svg?branch=master)](https://coveralls.io/github/tgquintela/CooperativeGames?branch=master)
+[![Build Status](https://travis-ci.org/tgquintela/CooperativeGames.svg?branch=master)](https://travis-ci.org/tgquintela/CooperativeGames)
 # CooperativeGames
 Some measure useful for cooperative games. 
 In this first version it contains:
