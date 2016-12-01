@@ -11,9 +11,11 @@ set -e
 if [[ "$COVERAGE" == "true" ]]; then
 #    nosetests CooperativeGames/__init__.py --with-coverage --cover-package=CooperativeGames
 #    nosetests CooperativeGames/tests/test_plotting.py --with-coverage --cover-package=CooperativeGames
-    nosetests CooperativeGames/tests/test_measurestools.py  --with-coverage --cover-package=CooperativeGames
+#    nosetests CooperativeGames/tests/test_measurestools.py  --with-coverage --cover-package=CooperativeGames
+    nosetests CooperativeGames/tests/test_measures.py  --with-coverage --cover-package=CooperativeGames
 else
 #    nosetests CooperativeGames/__init__.py
 #    nosetests CooperativeGames/tests/test_plotting.py
-    nosetests CooperativeGames/tests/test_measurestools.py
+#    nosetests CooperativeGames/tests/test_measurestools.py
+    nosetests CooperativeGames/tests/test_measures.py
 fi
