@@ -13,7 +13,7 @@ from Measures.cooperativegames import shapley_index, shapley_value,\
 ## The test functions
 from tests import test_measures
 from tests import test_measurestools
-from tests import test_plotting
+#from tests import test_plotting
 
 ## Information about package
 import version
@@ -29,4 +29,4 @@ warnings.simplefilter("ignore")
 def test():
     test_measures.test()
     test_measurestools.test()
-    test_plotting.test()
+#    test_plotting.test()
