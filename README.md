@@ -16,7 +16,7 @@ The easy way to use this functions are:
 
 * Shapley value
 ```python
-from Cooperativegames import shapley_value
+from cooperativegames import shapley_value
 
 entities = np.array(range(3))
 funct = lambda x: 1 if list(x) in [[0, 2], [1, 2], [0, 1, 2]] else 0
@@ -26,7 +26,7 @@ sh_v1 = shapley_value(entities, funct)
 
 * Shapley-Shubik power index
 ```python
-from Cooperativegames import shapley_index
+from cooperativegames import shapley_index
 
 distrib_repr = np.array([3, 2, 1, 1])
 win_thr = 0.5
@@ -36,7 +36,7 @@ sh_sh_ind = shapley_index(distrib_repr, win_thr)
 
 * Banzhaf power index
 ```python
-from Cooperativegames import banzhaf_index
+from cooperativegames import banzhaf_index
 
 distrib_repr = np.array([4, 3, 2, 1])
 win_thr = 0.5
@@ -50,7 +50,7 @@ It is provide a testing module called test.py. It runs only with the importation
 
 ```python
 
-import CooperativeGames
+import cooperativegames
 CooperativeGames.test()
 
 ```

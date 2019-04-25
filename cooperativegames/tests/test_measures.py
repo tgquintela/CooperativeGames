@@ -5,8 +5,9 @@ __author__ = 'To\xc3\xb1o G. Quintela (tgq.spm@gmail.com)'
 """
 
 import numpy as np
-from ..Measures.cooperativegames import shapley_index, banzhaf_index,\
-    shapley_value, weighted_winning_coalitions, weighted_worsable_coalitions
+from cooperativegames.measures.cooperativegames_metrics import banzhaf_index,\
+    shapley_index, shapley_value, weighted_winning_coalitions,\
+    weighted_worsable_coalitions
 
 
 def test():

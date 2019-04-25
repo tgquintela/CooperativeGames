@@ -20,8 +20,8 @@ import numpy as np
 from itertools import permutations, combinations
 from collections import Counter
 import math
-from cooperativegames_tools import all_subsets_it, winning_coalitions_it,\
-    get_critical_players, weight_coalition, all_subsets
+from cooperativegames.measures.cooperativegames_tools import all_subsets_it,\
+    winning_coalitions_it, get_critical_players, weight_coalition, all_subsets
 
 
 def weighted_winning_coalitions(distrib_repr, weights, win_thr=0.5):

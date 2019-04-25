@@ -7,8 +7,9 @@ The main cooperative games functions to study cooperative games phenomena.
 """
 
 ## Elevate the main functions
-from Measures.cooperativegames import shapley_index, shapley_value,\
-    banzhaf_index, weighted_winning_coalitions, weighted_worsable_coalitions
+from cooperativegames.measures.cooperativegames_metrics import shapley_index,\
+	shapley_value, banzhaf_index, weighted_winning_coalitions,\
+	weighted_worsable_coalitions
 
 ## The test functions
 from tests import test_measures

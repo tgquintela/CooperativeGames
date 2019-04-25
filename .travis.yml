@@ -14,7 +14,7 @@ addons:
 matrix:
   include:
     # "Recommended" environments: More recent versions, for Py2 and Py3.
-    - python: "2.7"
+    - python: "3.7"
       env: DEPS="" DISTRIB="conda" COVERAGE="true"
 
 # installation

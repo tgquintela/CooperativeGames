@@ -7,7 +7,7 @@ Module which contains the tests for the plotting utitilies.
 """
 
 import numpy as np
-from ..Plotting_tools.plotting import plotting_power
+from cooperativegames.plotting_tools.plotting import plotting_power
 
 
 def test():

@@ -11,7 +11,7 @@ from glob import glob
 import sys
 import os
 import warnings
-from CooperativeGames import release
+import release
 
 ## Temporally commented
 #if os.path.exists('MANIFEST'):
@@ -34,12 +34,12 @@ if sys.argv[-1] == 'setup.py':
     print()
 
 
-version = release.write_versionfile()
+version = release.write_versionfile() 
 
-packages = ['CooperativeGames',
-            'CooperativeGames.Measures',
-            'CooperativeGames.Plotting_tools',
-            'CooperativeGames.tests',
+packages = ['cooperativegames',
+            'cooperativegames.measures',
+            'cooperativegames.plotting_tools',
+            'cooperativegames.tests',
             ]
 
 docdirbase = 'share/doc/CooperativeGames-%s' % version
@@ -57,7 +57,7 @@ for d in ['advanced',
     data.append((dd, glob(os.path.join(pp, "*.edgelist"))))
 
 # add the tests
-package_data = {'CooperativeGames': ['tests/*.py']
+package_data = {'cooperativegames': ['tests/*.py']
                 }
 
 install_requires = ['numpy', 'scipy', 'pandas', 'matplotlib']

@@ -8,7 +8,7 @@ ignore zeros
 import pandas as pd
 import numpy as np
 
-from CooperativeGames import shapley_index, banzhaf_index
+from cooperativegames import shapley_index, banzhaf_index
 
 
 def parse_csv(path, win_thrs, outpath=None):

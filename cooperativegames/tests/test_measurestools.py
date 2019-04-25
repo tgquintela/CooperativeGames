@@ -6,10 +6,10 @@ cooperativegames tools.
 """
 
 import numpy as np
-from ..Measures.cooperativegames_tools import all_subsets_it,\
+from cooperativegames.measures.cooperativegames_tools import all_subsets_it,\
     winning_coalitions_it, get_critical_players, weight_coalition,\
     all_subsets, _in_set
-from ..Measures.tools import from_positions2weights
+from cooperativegames.measures.tools import from_positions2weights
 
 
 def test():
