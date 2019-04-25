@@ -12,13 +12,13 @@ from cooperativegames.measures.cooperativegames_metrics import shapley_index,\
 	weighted_worsable_coalitions
 
 ## The test functions
-from tests import test_measures
-from tests import test_measurestools
+from cooperativegames.tests import test_measures
+from cooperativegames.tests import test_measurestools
 #from tests import test_plotting
 
 ## Information about package
-import version
-import release
+import cooperativegames.version
+#import release
 
 ## Not inform about warnings
 import warnings
